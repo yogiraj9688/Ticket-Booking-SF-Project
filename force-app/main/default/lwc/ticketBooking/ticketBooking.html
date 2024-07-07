@@ -1,0 +1,63 @@
+<template>
+    <lightning-card title="Hurry Up! Book your Event">
+        <lightning-layout>
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-card>
+
+                    <lightning-record-edit-form  object-api-name="Ticket__c" onsuccess={createTicket}>
+                        <p><lightning-input-field field-name="Concert__c" onchange={handleChange}>
+                        </lightning-input-field></p>
+                        <p><lightning-input-field field-name="Price__c" label="Enter Price" value={showPrice}>
+                        </lightning-input-field></p>
+                        <p><lightning-input-field field-name="Individual__c">
+                        </lightning-input-field></p>
+                        <p><lightning-button type="submit" variant="brnad" name="save" label="Book Ticket"
+                            onclick={customShowModalPopup}>
+                        </lightning-button> </p>
+                    </lightning-record-edit-form>
+                </lightning-card>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+    
+    <template if:true={customFormModel}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-headong-01"
+        aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <!--Modal header Start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={customHideModalPopup}>
+                        <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Congratulations! Your Ticket has been Booked</h2>
+                </header>
+                <!--Modal body Start -->
+                <lightning-card>
+                    <lightning-record-view-form record-id={recordId} object-api-name="Ticket__c">
+                        <p><lightning-output-field field-name="Concert__c">
+                        </lightning-output-field></p>
+                        <p><lightning-output-field field-name="Price__C">
+                        </lightning-output-field></p>
+                        <p><lightning-output-field field-name="Individual__c">
+                        </lightning-output-field></p>
+                        <p><lightning-output-field field-name="Ticket_Number__c">
+                        </lightning-output-field></p>
+                    </lightning-record-view-form>
+                </lightning-card>                
+
+                <footer class="modal-modal__footer">
+                    <button class="slds-button slds-button--destructive" onclick={customHideModalPopup}>
+                    </button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open">
+
+        </div>
+    </template>
+</template>

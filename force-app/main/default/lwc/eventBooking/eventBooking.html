@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Concerts in Town" icon-name="custom:custom42">
+        <table>
+            <thead>
+                <th style="border: 1px solid black; text-align: center;">Concerts Name</th>
+                <th style="border: 1px solid black; text-align: center;">Concerts Type</th>
+                <th style="border: 1px solid black; text-align: center;">Concerts Venue</th>
+                <th style="border: 1px solid black; text-align: center;">Date of Concert</th>
+                <th style="border: 1px solid black; text-align: center;">Price</th>
+            </thead>
+            <tbody>
+                <template for:each={concertList} for:item="Concert">
+                    <tr key={Concert.Id}>
+                        <td style="border: 1px solid black; text-align: center;">{Concert.Name}</td>
+                        <td style="border: 1px solid black; text-align: center;">{Concert.Concert_Type__c}</td>
+                        <td style="border: 1px solid black; text-align: center;">{Concert.Concert_Venue__c}</td>
+                        <td style="border: 1px solid black; text-align: center;">{Concert.Date_of_Concert__c}</td>
+                        <td style="border: 1px solid black; text-align: center;">{Concert.Price__c}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <button class="slds-button slds-button_brand slds-align_absolute-center" onclick={handleNavigate}>
+            Book Tickets
+        </button>
+    </lightning-card>
+</template>
